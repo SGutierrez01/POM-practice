@@ -9,6 +9,9 @@ public class CheckoutCompletePage extends BasePage {
     @FindBy(xpath = "//h2[@class='complete-header']")
     private WebElement completeMessageTxt;
 
+    @FindBy(id = "back-to-products")
+    private WebElement backToProductsBtn;
+
     public CheckoutCompletePage(WebDriver driver) {
         super(driver);
     }
@@ -20,5 +23,11 @@ public class CheckoutCompletePage extends BasePage {
     public String getCompleteMessage(){
         isElementDisplayed(completeMessageTxt);
         return completeMessageTxt.getText();
+    }
+
+    public CatalogPage clickBackToProductsBtn(){
+        isElementDisplayed(backToProductsBtn);
+        backToProductsBtn.click();
+        return new CatalogPage(super.driver);
     }
 }

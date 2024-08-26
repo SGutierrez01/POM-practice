@@ -10,4 +10,10 @@
             <class name="com.globant.tests.PurchaseTest"/>
         </classes>
     </test>
+    <test name="Remove Items Tests">
+        <parameter name="amount" value="3"></parameter>
+        <classes>
+            <class name="com.globant.tests.RemoveItemsTest"/>
+        </classes>
+    </test>
 </suite>

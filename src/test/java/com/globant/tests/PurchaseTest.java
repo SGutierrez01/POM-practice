@@ -2,7 +2,6 @@ package com.globant.tests;
 
 import com.globant.pages.*;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -22,5 +21,6 @@ public class PurchaseTest extends BaseTest {
             CheckoutCompletePage checkoutCompletePage = checkoutOverviewPage.clickFinishBtn();
             Assert.assertTrue(checkoutCompletePage.isCompleteMessageDisplayed());
             Assert.assertEquals(checkoutCompletePage.getCompleteMessage(), "Thank you for your order!");
+
         }
 }

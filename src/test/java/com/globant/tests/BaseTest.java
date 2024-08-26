@@ -14,7 +14,7 @@ import org.testng.annotations.Parameters;
 public class BaseTest {
     private WebDriver driver = null;
 
-    @BeforeSuite
+    @BeforeTest
     public void beforeTest(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
