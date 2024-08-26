@@ -14,6 +14,12 @@ public class CatalogPage extends BasePage {
     @FindBy(xpath = "//body/div[@id='root']/div[@id='page_wrapper']/div[@id='contents_wrapper']/div[@id='header_container']/div[1]/div[3]/a[1]")
     private WebElement cartBtn;
 
+    @FindBy(xpath = "//button[@id='react-burger-menu-btn']")
+    private WebElement menuBtn;
+
+    @FindBy(css = "a#logout_sidebar_link")
+    private WebElement logoutBtn;
+
     public CatalogPage(WebDriver driver) {
         super(driver);
     }
@@ -23,14 +29,25 @@ public class CatalogPage extends BasePage {
         productsBtn.get(index).click();
     }
 
+    public int getProductsCount(){
+        return productsBtn.size();
+    }
+
     public CartPage clickCartBtn(){
         isElementDisplayed(cartBtn);
         cartBtn.click();
         return new CartPage(super.driver);
     }
 
-    public int getProductsCount(){
-        return productsBtn.size();
+    public void clickMenuBtn(){
+        isElementDisplayed(menuBtn);
+        menuBtn.click();
+    }
+
+    public LoginPage clickLogoutBtn(){
+        isElementDisplayed(logoutBtn);
+        logoutBtn.click();
+        return new LoginPage(super.driver, this.driver.getCurrentUrl());
     }
 
 }

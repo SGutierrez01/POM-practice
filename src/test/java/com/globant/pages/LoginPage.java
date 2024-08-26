@@ -36,4 +36,8 @@ public class LoginPage extends BasePage{
         return new CatalogPage(super.driver);
     }
 
+    public boolean isLoginContentDisplayed(){
+        return isElementDisplayed(usernameInput) && isElementDisplayed(passwordInput) && isElementDisplayed(loginButton);
+    }
+
 }

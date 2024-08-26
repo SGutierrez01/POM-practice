@@ -16,4 +16,9 @@
             <class name="com.globant.tests.RemoveItemsTest"/>
         </classes>
     </test>
+    <test name="Log Out Tests">
+        <classes>
+            <class name="com.globant.tests.LogoutTest"/>
+        </classes>
+    </test>
 </suite>
