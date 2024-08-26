@@ -5,7 +5,7 @@
     <test name="Purchase Tests">
         <parameter name="firstName" value="Santiago"></parameter>
         <parameter name="lastName" value="Gutierrez"></parameter>
-        <parameter name="zipCode" value="12345"></parameter>
+        <parameter name="postalCode" value="12345"></parameter>
         <classes>
             <class name="com.globant.tests.PurchaseTest"/>
         </classes>
