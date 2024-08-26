@@ -30,9 +30,10 @@ public class LoginPage extends BasePage{
         passwordInput.sendKeys(password);
     }
 
-    public void clickLoginButton(){
+    public CatalogPage clickLoginButton(){
         isElementDisplayed(loginButton);
         loginButton.click();
+        return new CatalogPage(super.driver);
     }
 
 }

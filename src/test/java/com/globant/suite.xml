@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="POM-practice Suite">
+    <parameter name="username" value="standard_user"></parameter>
+    <parameter name="password" value="secret_sauce"></parameter>
+    <test name="Purchase Tests">
+        <parameter name="firstName" value="Santiago"></parameter>
+        <parameter name="lastName" value="Gutierrez"></parameter>
+        <parameter name="zipCode" value="12345"></parameter>
+        <classes>
+            <class name="com.globant.tests.PurchaseTest"/>
+        </classes>
+    </test>
+</suite>
