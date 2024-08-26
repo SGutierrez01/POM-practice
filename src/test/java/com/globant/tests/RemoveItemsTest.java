@@ -3,12 +3,13 @@ package com.globant.tests;
 import com.globant.pages.CartPage;
 import com.globant.pages.CatalogPage;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class RemoveItemsTest extends BaseTest {
 
-    @Test
+    @Test(groups = {"remove"})
     @Parameters({"amount"})
     public void testCart(int amount){
         CatalogPage catalogPage = getCatalogPage();

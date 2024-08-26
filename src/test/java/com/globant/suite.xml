@@ -2,6 +2,7 @@
 <suite name="POM-practice Suite">
     <parameter name="username" value="standard_user"></parameter>
     <parameter name="password" value="secret_sauce"></parameter>
+    <parameter name="url" value="https://www.saucedemo.com/"></parameter>
     <test name="Purchase Tests">
         <parameter name="firstName" value="Santiago"></parameter>
         <parameter name="lastName" value="Gutierrez"></parameter>

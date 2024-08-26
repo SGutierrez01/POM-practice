@@ -8,14 +8,25 @@ import java.util.List;
 
 public class CartPage extends BasePage {
 
+    @FindBy(css = ".title")
+    private WebElement title;
+
     @FindBy(id = "checkout")
     private WebElement checkoutBtn;
+
+    @FindBy(xpath = "//div[contains(@class, 'cart_list')]//div[contains(@class, 'cart_item')]")
+    private List<WebElement> itemsIntoCart;
 
     @FindBy(xpath = "//div[contains(@class, 'cart_list')]//button[contains(@class, 'cart_button')]")
     private List<WebElement> itemsRemoveBtn;
 
     public CartPage(WebDriver driver) {
         super(driver);
+    }
+
+    public String getTitle(){
+        isElementDisplayed(title);
+        return title.getText();
     }
 
     public CheckoutInformationPage clickCheckoutBtn(){
@@ -31,5 +42,13 @@ public class CartPage extends BasePage {
 
     public int getItemsCount(){
         return itemsRemoveBtn.size();
+    }
+
+    public boolean isItemIntoCartDisplayed(){
+        return isElementDisplayed(itemsIntoCart.get(0));
+    }
+
+    public boolean isCartPageDisplayed() {
+        return isElementDisplayed(title) && isElementDisplayed(checkoutBtn);
     }
 }
