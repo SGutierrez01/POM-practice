@@ -1,11 +1,9 @@
-package com.globant.tests;
+package com.globant.utils.tests;
 
 import com.globant.pages.CatalogPage;
 import com.globant.pages.LoginPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.globant.utils.drivers.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 
 public class BaseTest {
@@ -13,10 +11,7 @@ public class BaseTest {
 
     @BeforeTest
     public void setUp(){
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--start-maximized");
-        driver = new ChromeDriver(chromeOptions);
+        driver = WebDriverFactory.createDriver();
     }
 
     @BeforeMethod
@@ -29,7 +24,7 @@ public class BaseTest {
     }
 
     @AfterClass
-    public void tearDown() {
+    public void close() {
         if (driver != null) {
             driver.quit();
         }
