@@ -9,6 +9,12 @@ public class LoginPage extends BasePage{
     @FindBy(id = "user-name")
     private WebElement usernameInput;
 
+    @FindBy(css = "#password")
+    private WebElement passwordInput;
+
+    @FindBy(xpath = "//input[@type='submit']")
+    private WebElement loginButton;
+
     public LoginPage(WebDriver driver, String url){
         super(driver);
         this.driver.get(url);
@@ -18,4 +24,15 @@ public class LoginPage extends BasePage{
         isElementDisplayed(usernameInput);
         usernameInput.sendKeys(username);
     }
+
+    public void setPassword(String password){
+        isElementDisplayed(passwordInput);
+        passwordInput.sendKeys(password);
+    }
+
+    public void clickLoginButton(){
+        isElementDisplayed(loginButton);
+        loginButton.click();
+    }
+
 }

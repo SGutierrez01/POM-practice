@@ -9,6 +9,8 @@ public class LoginTest extends BaseTest{
     public void testLogin(){
         LoginPage loginPage = getLoginPage();
         loginPage.setUsername("standard_user");
+        loginPage.setPassword("secret_sauce");
+        loginPage.clickLoginButton();
     }
 
 }
