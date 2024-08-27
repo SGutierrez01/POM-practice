@@ -40,5 +40,4 @@ public class LoginPage extends BasePage {
     public boolean isLoginContentDisplayed(){
         return isElementDisplayed(usernameInput) && isElementDisplayed(passwordInput) && isElementDisplayed(loginButton);
     }
-
 }

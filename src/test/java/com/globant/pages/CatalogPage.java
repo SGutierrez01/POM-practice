@@ -1,6 +1,7 @@
 package com.globant.pages;
 
 import com.globant.utils.pages.BasePage;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,11 +13,17 @@ public class CatalogPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class, 'inventory_item')]//button[contains(@class, 'btn_inventory')]")
     private List<WebElement> productsBtn;
 
+    @FindBy(xpath = "//button[contains(@id, 'remove-')]")
+    private List<WebElement> removeBtn;
+
     @FindBy(xpath = "//body/div[@id='root']/div[@id='page_wrapper']/div[@id='contents_wrapper']/div[@id='header_container']/div[1]/div[3]/a[1]")
     private WebElement cartBtn;
 
     @FindBy(xpath = "//button[@id='react-burger-menu-btn']")
     private WebElement menuBtn;
+
+    @FindBy(css = ".bm-menu")
+    private WebElement menu;
 
     @FindBy(css = "a#logout_sidebar_link")
     private WebElement logoutBtn;
@@ -32,6 +39,10 @@ public class CatalogPage extends BasePage {
 
     public int getProductsCount(){
         return productsBtn.size();
+    }
+
+    public int getRemoveBtnCount(){
+        return removeBtn.size();
     }
 
     public CartPage clickCartBtn(){
@@ -51,4 +62,11 @@ public class CatalogPage extends BasePage {
         return new LoginPage(super.driver, this.driver.getCurrentUrl());
     }
 
+    public boolean isCatalogPageDisplayed() {
+        return isElementDisplayed(menuBtn);
+    }
+
+    public boolean isMenuDisplayed() {
+        return isElementDisplayed(menu);
+    }
 }

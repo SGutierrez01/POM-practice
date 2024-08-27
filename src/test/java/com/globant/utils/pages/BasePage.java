@@ -1,5 +1,6 @@
 package com.globant.utils.pages;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -20,5 +21,9 @@ public class BasePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(element));
         return element.isDisplayed();
+    }
+
+    public Cookie getCookie(String cookieName){
+        return driver.manage().getCookieNamed(cookieName);
     }
 }
