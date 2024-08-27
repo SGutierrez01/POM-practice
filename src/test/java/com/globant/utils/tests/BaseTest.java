@@ -17,10 +17,14 @@ public class BaseTest {
     @BeforeMethod
     @Parameters({"username", "password", "url"})
     public CatalogPage login(String username, String password, String url){
-        LoginPage loginPage = new LoginPage(this.driver, url);
+        LoginPage loginPage = getLoginPage(url);
         loginPage.setUsername(username);
         loginPage.setPassword(password);
         return loginPage.clickLoginButton();
+    }
+
+    public LoginPage getLoginPage(String url){
+        return new LoginPage(this.driver, url);
     }
 
     @AfterClass
