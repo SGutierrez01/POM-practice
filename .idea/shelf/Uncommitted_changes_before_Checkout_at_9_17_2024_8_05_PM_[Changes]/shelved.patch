@@ -1,0 +1,45 @@
+Index: .github/workflows/ci.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>name: CI/CD for Web Automation\r\n\r\non:\r\n  push:\r\n    branches:\r\n      - main\r\n  pull_request:\r\n    branches:\r\n      - main\r\n  workflow_dispatch:\r\n    inputs:\r\n      browserName:\r\n        description: 'Browser type'\r\n        required: false\r\n        type: string\r\n        default: 'CHROME'\r\njobs:\r\n  test-application:\r\n    runs-on: ubuntu-latest\r\n\r\n    steps:\r\n      - name: Checkout repository\r\n        uses: actions/checkout@v4\r\n\r\n      - name: Set up JDK 11\r\n        uses: actions/setup-java@v4\r\n        with:\r\n          java-version: '11'\r\n          distribution: 'temurin'\r\n\r\n      - name: Cache Maven dependencies\r\n        uses: actions/cache@v3\r\n        with:\r\n          path: ~/.m2\r\n          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}\r\n\r\n      - name: Build with Maven\r\n        run: mvn -B clean install\r\n\r\n      - name: Run tests with TestNG\r\n        run: mvn test -DsuiteXmlFile=src/test/resources/suite.xml\r\n\r\n      - name: Get Allure history\r\n        uses: actions/checkout@v3\r\n        if: always()\r\n        continue-on-error: true\r\n        with:\r\n          ref: gh-pages\r\n          path: gh-pages\r\n\r\n      - name: Generate Allure report\r\n        uses: simple-elf/allure-report-action@master\r\n        if: always()\r\n        with:\r\n          allure_results: ${{ env.ALLURE_RESULTS_PATH }}\r\n          gh_pages: gh-pages\r\n          allure_report: allure-report\r\n          allure_history: allure-history\r\n\r\n      - name: Deploy Allure report to GitHub Pages\r\n        uses: crazy-max/ghaction-github-pages@v4\r\n        if: always()\r\n        with:\r\n          target_branch: gh-pages\r\n          build_dir: allure-history\r\n        env:\r\n          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+===================================================================
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+--- a/.github/workflows/ci.yml	
++++ b/.github/workflows/ci.yml	
+@@ -14,6 +14,7 @@
+         required: false
+         type: string
+         default: 'CHROME'
++
+ jobs:
+   test-application:
+     runs-on: ubuntu-latest
+@@ -22,10 +23,10 @@
+       - name: Checkout repository
+         uses: actions/checkout@v4
+ 
+-      - name: Set up JDK 11
++      - name: Set up JDK 17
+         uses: actions/setup-java@v4
+         with:
+-          java-version: '11'
++          java-version: '17'
+           distribution: 'temurin'
+ 
+       - name: Cache Maven dependencies
+@@ -35,7 +36,7 @@
+           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+ 
+       - name: Build with Maven
+-        run: mvn -B clean install
++        run: mvn clean install -DskipTests
+ 
+       - name: Run tests with TestNG
+         run: mvn test -DsuiteXmlFile=src/test/resources/suite.xml
+@@ -64,4 +65,4 @@
+           target_branch: gh-pages
+           build_dir: allure-history
+         env:
+-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+\ No newline at end of file
++          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
