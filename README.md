@@ -28,3 +28,8 @@ This project demonstrates the use of the Page Object Model (POM) design pattern 
 ## How to Run
 
 All tests are executed via the `suite.xml` file located in the `resources` directory. Simply run this file to execute the test suite.
+
+---
+
+**Author**: Santiago Gutiérrez  
+**Date**: September 2024
